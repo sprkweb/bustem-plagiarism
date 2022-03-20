@@ -1,5 +1,5 @@
 # Get plain text from an EditorJS markup
-def plaintext_from_editorjs(editorjs_data):
+def plaintext_from_editorjs(editorjs_data: dict) -> str:
     text = []
     for block in editorjs_data['blocks']:
         if 'text' in block['data']:

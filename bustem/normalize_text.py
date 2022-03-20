@@ -17,7 +17,7 @@ class TextNormalizer:
         self.remove_tags = re.compile('<.*?>') 
 
     # Generate an array of normalized stems from a text
-    def normalize(self, text):
+    def normalize(self, text: str) -> list:
         normalized_text = re.sub(self.remove_tags, '', text)
         normalized_text = html.unescape(normalized_text)
         normalized_text = normalized_text.lower()
@@ -27,5 +27,5 @@ class TextNormalizer:
         words = [self.stemmer.stem(word) for word in words if self.__accept_word(word)]
         return words
 
-    def __accept_word(self, word):
+    def __accept_word(self, word: str) -> bool:
         return word not in self.stop_words and word not in self.punctuation
