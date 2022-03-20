@@ -11,4 +11,15 @@ class NGramsGenerator:
         if ngrams_number < 1:
             return []
         return [' '.join(tokens[i:i+self.n]) for i in range(ngrams_number)]
-    
+
+    # Generate a dict of n-grams: 
+    # key = n-gram, 
+    # value = the amount of times it appears
+    def generate_hash(self, ngrams: list) -> list:
+        result = dict()
+        for ngram in ngrams:
+            if ngram in result:
+                result[ngram] += 1
+            else:
+                result[ngram] = 1
+        return result
