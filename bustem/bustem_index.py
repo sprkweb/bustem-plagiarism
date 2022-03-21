@@ -9,16 +9,17 @@ class BustEmIndex:
         self.normalizer = TextNormalizer(language)
         self.ngrams_generator = NGramsGenerator(n)
 
-    def add(self, identity, text: str) -> None:
-        self.index.append((identity, self.__text_to_ngrams(text)))
+    def add(self, meta, text: str) -> None:
+        self.index.append((meta, self.__text_to_ngrams(text)))
 
-    def check(self, text: str, threshold = 0) -> list:
+    def check(self, text: str, threshold = 0, filter_ = lambda meta: True) -> list:
         checked_ngrams = self.__text_to_ngrams(text)
         result = []
         for item in self.index:
-            score = compare_ngrams(checked_ngrams, item[1])
-            if score >= threshold:
-                result.append((item[0], score))
+            if filter_(item[0]):
+                score = compare_ngrams(checked_ngrams, item[1])
+                if score >= threshold:
+                    result.append((item[0], score))
         result.sort(reverse=True, key=lambda x: x[1])
         return result
 
