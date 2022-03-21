@@ -8,9 +8,13 @@ from nltk.corpus import stopwords
 
 # thanks https://gist.github.com/lvngd/3695aac64461de2cfb9d50bb11d5fbb3
 class TextNormalizer:
+    nltk_loaded = False
+
     def __init__(self, language='english'):
-        nltk.download('punkt')
-        nltk.download('stopwords')
+        if not TextNormalizer.nltk_loaded:
+            nltk.download('punkt')
+            nltk.download('stopwords')
+            TextNormalizer.nltk_loaded = True
         self.stemmer = SnowballStemmer(language)
         self.punctuation = string.punctuation
         self.stop_words = set(stopwords.words(language))
