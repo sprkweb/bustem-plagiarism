@@ -9,6 +9,13 @@ or [w-shingles](https://en.wikipedia.org/wiki/W-shingling) for N > 1) and text n
 
 ## Installation
 
+### As a dependency
+
+    pip3 install https://github.com/sprkweb/bustem-plagiarism/releases/download/v0.1/bustem_plagiarism-0.1.0-py3-none-any.whl
+
+### How to build
+
+    git clone https://github.com/sprkweb/bustem-plagiarism.git
     pip install -r requirements.txt
 
 ## API
